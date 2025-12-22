@@ -1,0 +1,13 @@
+<div *ngIf="property as p; else loading">
+  <h2>Property Details</h2>
+
+  <p><strong>Address:</strong> {{ p.address }}</p>
+  <p><strong>City:</strong> {{ p.city }}</p>
+  <p><strong>Province:</strong> {{ p.province }}</p>
+  <p><strong>Postal Code:</strong> {{ p.postal_code }}</p>
+  <p><strong>Type:</strong> {{ p.property_type }}</p>
+</div>
+
+<ng-template #loading>
+  <p>Loading property details...</p>
+</ng-template>

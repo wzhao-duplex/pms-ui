@@ -1,0 +1,67 @@
+<h2>Tenant</h2>
+
+<form [formGroup]="tenantForm" (ngSubmit)="onSubmit()">
+
+  <!-- Full Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Full Name</mat-label>
+    <input matInput formControlName="full_name" />
+    <mat-error *ngIf="tenantForm.get('full_name')?.hasError('required')">
+      Full name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Phone -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" />
+  </mat-form-field>
+
+  <!-- Email -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-error *ngIf="tenantForm.get('email')?.hasError('email')">
+      Invalid email format
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Lease Start -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Lease Start</mat-label>
+    <input matInput type="date" formControlName="lease_start" />
+  </mat-form-field>
+
+  <!-- Lease End -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Lease End</mat-label>
+    <input matInput type="date" formControlName="lease_end" />
+  </mat-form-field>
+
+  <!-- Monthly Rent -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Monthly Rent</mat-label>
+    <input matInput type="number" formControlName="monthly_rent" />
+  </mat-form-field>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="tenantForm.invalid"
+    >
+      Save
+    </button>
+
+    <button
+      mat-button
+      type="button"
+      routerLink="/tenants"
+    >
+      Cancel
+    </button>
+  </div>
+
+</form>
