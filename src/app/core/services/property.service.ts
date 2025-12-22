@@ -13,9 +13,7 @@ export class PropertyService {
   constructor(private api: ApiService, private http: HttpClient) { }
 
   getAllByOrg(orgId: string) {
-    return this.http.get<Property[]>(
-      `${environment.apiUrl}/properties?orgId=${orgId}`
-    );
+    return this.api.get<Property[]>(`/properties?orgId=${orgId}`);
   }
 
   getById(id: string): Observable<Property> {
