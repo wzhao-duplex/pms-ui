@@ -16,7 +16,7 @@ import { AuthService } from './core/services/auth.service';
     MatButtonModule
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   constructor(public authService: AuthService) { }
