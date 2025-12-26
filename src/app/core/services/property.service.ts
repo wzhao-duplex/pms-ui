@@ -1,26 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
-import { Property } from '../models/property.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { ApiService } from './api.service'; // Import your generic service
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
 
-  constructor(private api: ApiService, private http: HttpClient) { }
+  // Inject your generic ApiService
+  private api = inject(ApiService);
 
-  getAllByOrg(orgId: string) {
-    return this.api.get<Property[]>(`/properties?orgId=${orgId}`);
+  getAll(): Observable<any[]> {
+    // Just pass the endpoint. ApiService adds the Base URL.
+    return this.api.get<any[]>('/properties');
   }
 
-  getById(id: string): Observable<Property> {
-    return this.api.get<Property>(`/properties/${id}`);
+  createProperty(data: any): Observable<any> {
+    return this.api.post<any>('/properties', data);
   }
 
-  create(property: Property): Observable<Property> {
-    return this.api.post<Property>('/properties', property);
+  getPropertyById(id: string): Observable<any> {
+    return this.api.get<any>(`/properties/${id}`);
+  }
+
+  updateProperty(id: string, data: any): Observable<any> {
+    return this.api.put<any>(`/properties/${id}`, data);
+  }
+
+  deleteProperty(id: string): Observable<void> {
+    return this.api.delete<void>(`/properties/${id}`);
   }
 }

@@ -20,7 +20,7 @@ export class TenantService {
     return this.api.get<Tenant>(`/tenants/${id}`);
   }
 
-  create(tenant: Tenant): Observable<Tenant> {
+  createTenant(tenant: Tenant): Observable<Tenant> {
     return this.api.post<Tenant>('/tenants', tenant);
   }
 
