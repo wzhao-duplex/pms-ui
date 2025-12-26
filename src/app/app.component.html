@@ -1,11 +1,25 @@
-<mat-toolbar color="primary">
+<!-- Only show the toolbar if the user is logged in -->
+<mat-toolbar color="primary" *ngIf="authService.currentUser() as user">
   <span>PMS</span>
+
+  <!-- Pushes buttons to the right -->
   <span class="spacer"></span>
+
   <button mat-button routerLink="/dashboard">Dashboard</button>
   <button mat-button routerLink="/properties">Properties</button>
   <button mat-button routerLink="/tenants">Tenants</button>
+
+  <!-- User Email Display -->
+  <span class="ms-3 me-2" style="font-size: 0.8rem;">
+    {{ user.sub }}
+  </span>
+
+  <!-- LOGOUT BUTTON -->
+  <button mat-flat-button color="warn" (click)="authService.logout()">
+    Logout
+  </button>
 </mat-toolbar>
 
-<div class="container">
+<div class="container mt-3">
   <router-outlet></router-outlet>
 </div>

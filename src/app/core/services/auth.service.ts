@@ -35,11 +35,18 @@ export class AuthService {
     }
 
     logout() {
+        // 1. Notify Backend using your ApiService wrapper
+        // The ApiService automatically prepends the Base URL, so just pass '/auth/logout'
+        this.api.post('/auth/logout', {}).subscribe({
+            next: () => console.log('Backend logout successful'),
+            error: (err) => console.warn('Backend logout failed', err)
+        });
+
+        // 2. Clear Client State
         localStorage.removeItem('jwt_token');
         this.currentUser.set(null);
         this.router.navigate(['/login']);
     }
-
     isLoggedIn(): boolean {
         const token = this.getToken();
         if (!token) return false;
