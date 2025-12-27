@@ -1,9 +1,9 @@
-export interface Income {
-  income_id?: string;
-  property_id: string;
-  income_type: string;
+export interface PropertyIncome {
+  incomeId?: string;
+  propertyId: string;
+  incomeType: string; // e.g. RENT, PARKING
   amount: number;
-  income_date: string;
-  tax_year: number;
+  incomeDate: string; // YYYY-MM-DD
+  taxYear: number;
   notes?: string;
 }
