@@ -8,3 +8,12 @@ export interface Tenant {
   leaseEnd: string;
   monthlyRent: number;
 }
+
+export interface TenantDocument {
+  documentId: string;
+  tenantId: string;
+  originalFileName: string;
+  documentType: string;
+  fileSize: number;
+  uploadedAt: string;
+}

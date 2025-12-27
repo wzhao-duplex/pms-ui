@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card'; // Optional for styling
 import { TenantService } from '../../../core/services/tenant.service';
 import { Tenant } from '../../../core/models/tenant.model';
+import { TenantDocumentsComponent } from '../tenant-documents/tenant-documents.component';
 
 @Component({
     selector: 'app-tenant-detail',
@@ -13,7 +14,8 @@ import { Tenant } from '../../../core/models/tenant.model';
         CommonModule,
         RouterModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        TenantDocumentsComponent
     ],
     templateUrl: './tenant-detail.component.html',
     styleUrls: ['./tenant-detail.component.scss'] // Create this file or remove this line

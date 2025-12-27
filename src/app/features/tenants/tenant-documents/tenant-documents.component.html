@@ -1,3 +1,46 @@
-<h3>Tenant Documents</h3>
-<input type="file" (change)="onFileSelected($event)">
-<button mat-raised-button color="primary" (click)="upload()">Upload</button>
+<div class="documents-container mt-4">
+    <h3>Documents</h3>
+
+    <!-- Upload Section -->
+    <div class="upload-section card p-3 mb-3 bg-light">
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- File Input -->
+            <input type="file" (change)="onFileSelected($event)" class="form-control" style="max-width: 300px;">
+
+            <!-- Type Selection -->
+            <mat-form-field appearance="outline" style="margin-bottom: -1.25em">
+                <mat-label>Document Type</mat-label>
+                <mat-select [(ngModel)]="documentType">
+                    <mat-option *ngFor="let type of docTypes" [value]="type">
+                        {{ type }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Upload Button -->
+            <button mat-raised-button color="primary" (click)="upload()" [disabled]="!selectedFile">
+                <mat-icon>cloud_upload</mat-icon> Upload
+            </button>
+        </div>
+    </div>
+
+    <!-- Documents List -->
+    <mat-list>
+        <div *ngIf="documents.length === 0" class="text-muted">No documents uploaded yet.</div>
+
+        <mat-list-item *ngFor="let doc of documents" class="border-bottom">
+            <mat-icon matListItemIcon>description</mat-icon>
+
+            <div matListItemTitle class="fw-bold">{{ doc.originalFileName }}</div>
+            <div matListItemLine>
+                {{ doc.documentType }} | {{ doc.fileSize / 1024 | number:'1.0-2' }} KB | {{ doc.uploadedAt | date }}
+            </div>
+
+            <!-- Download Button -->
+            <button mat-icon-button (click)="download(doc)" matListItemMeta title="Download">
+                <mat-icon color="primary">download</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+</div>
