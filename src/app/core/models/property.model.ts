@@ -1,13 +1,18 @@
 export interface Property {
-  property_id?: string;
-  org_id?: string;
+  // ✅ Change these to camelCase to match Spring Boot JSON
+  propertyId?: string;       // Was property_id
+  orgId?: string;            // Was org_id
+
   address: string;
   city?: string;
   province?: string;
-  postal_code?: string;
-  property_type?: string;
-  ownership_percent?: number;
-  self_use_percent?: number;
-  management_company?: string;
-  created_at?: string;
+
+  postalCode?: string;       // Was postal_code
+  propertyType?: string;     // Was property_type
+
+  ownershipPercent?: number; // Was ownership_percent
+  selfUsePercent?: number;   // Was self_use_percent
+  managementCompany?: string;// Was management_company
+
+  createdAt?: string;        // Was created_at
 }

@@ -1,13 +1,67 @@
-<div *ngIf="property as p; else loading">
+<div *ngIf="property as p; else loading" class="container mt-3">
   <h2>Property Details</h2>
 
-  <p><strong>Address:</strong> {{ p.address }}</p>
-  <p><strong>City:</strong> {{ p.city }}</p>
-  <p><strong>Province:</strong> {{ p.province }}</p>
-  <p><strong>Postal Code:</strong> {{ p.postal_code }}</p>
-  <p><strong>Type:</strong> {{ p.property_type }}</p>
+  <div class="card p-4 shadow-sm">
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Address:</div>
+      <div class="col-md-9">{{ p.address }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">City:</div>
+      <div class="col-md-9">{{ p.city }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Province:</div>
+      <div class="col-md-9">{{ p.province }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Postal Code:</div>
+      <!-- ✅ FIXED: camelCase -->
+      <div class="col-md-9">{{ p.postalCode }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Property Type:</div>
+      <!-- ✅ FIXED: camelCase -->
+      <div class="col-md-9">{{ p.propertyType }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Management Company:</div>
+      <!-- ✅ ADDED -->
+      <div class="col-md-9">{{ p.managementCompany || 'N/A' }}</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">Ownership:</div>
+      <!-- ✅ ADDED -->
+      <div class="col-md-9">{{ p.ownershipPercent }}%</div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-3 fw-bold">property_id:</div>
+      <!-- ✅ ADDED -->
+      <div class="col-md-9">{{ p.propertyId }}</div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <!-- Edit Button -->
+    <button mat-raised-button color="accent" [routerLink]="['/properties', p.propertyId, 'edit']">
+      Edit {{ p.propertyId}}
+    </button>
+
+    <!-- Back Button -->
+    <button mat-button routerLink="/properties" class="ms-2">
+      Back to List
+    </button>
+  </div>
 </div>
 
 <ng-template #loading>
-  <p>Loading property details...</p>
+  <div class="container mt-3">
+    <p>Loading property details...</p>
+  </div>
 </ng-template>

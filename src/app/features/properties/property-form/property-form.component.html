@@ -1,12 +1,63 @@
-<h2>New Property</h2>
+<h2>{{ isEditMode ? 'Edit Property' : 'New Property' }}</h2>
+
 <form [formGroup]="propertyForm" (ngSubmit)="submit()">
-  <mat-form-field appearance="fill"><mat-label>Address</mat-label><input matInput formControlName="address"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>City</mat-label><input matInput formControlName="city"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Province</mat-label><input matInput formControlName="province"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Postal Code</mat-label><input matInput formControlName="postal_code"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Property Type</mat-label><input matInput formControlName="property_type"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Management Company</mat-label><input matInput formControlName="management_company"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Ownership %</mat-label><input matInput type="number" formControlName="ownership_percent"></mat-form-field>
-  <mat-form-field appearance="fill"><mat-label>Self Use %</mat-label><input matInput type="number" formControlName="self_use_percent"></mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Save</button>
+  <div class="row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Province</mat-label>
+      <input matInput formControlName="province">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Postal Code</mat-label>
+      <!-- ✅ FIX: camelCase -->
+      <input matInput formControlName="postalCode">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Property Type</mat-label>
+      <!-- ✅ FIX: camelCase -->
+      <input matInput formControlName="propertyType">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Management Company</mat-label>
+      <!-- ✅ FIX: camelCase -->
+      <input matInput formControlName="managementCompany">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Ownership %</mat-label>
+      <!-- ✅ FIX: camelCase -->
+      <input matInput type="number" formControlName="ownershipPercent">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Self Use %</mat-label>
+      <!-- ✅ FIX: camelCase -->
+      <input matInput type="number" formControlName="selfUsePercent">
+    </mat-form-field>
+  </div>
+
+  <div class="actions mt-3">
+    <button mat-raised-button color="primary" type="submit" [disabled]="propertyForm.invalid">
+      {{ isEditMode ? 'Update' : 'Create' }}
+    </button>
+    <button mat-button type="button" routerLink="/properties" class="ms-2">Cancel</button>
+  </div>
 </form>
