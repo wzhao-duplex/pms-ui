@@ -8,6 +8,7 @@ import { PropertyDetailComponent } from './features/properties/property-detail/p
 import { authGuard } from './core/guards/auth.guard';
 import { TenantListComponent } from './features/tenants/tenant-list/tenant-list.component';
 import { TenantFormComponent } from './features/tenants/tenant-form/tenant-form.component';
+import { TenantDetailComponent } from './features/tenants/tenant-detail/tenant-detail.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,8 +30,12 @@ export const routes: Routes = [
 
       { path: 'properties/:propertyId/edit', component: PropertyFormComponent },
 
+      // ... imports
       { path: 'tenants', component: TenantListComponent },
       { path: 'tenants/new', component: TenantFormComponent },
+      { path: 'tenants/:tenantId', component: TenantDetailComponent },
+      { path: 'tenants/:tenantId/edit', component: TenantFormComponent }, // Reuses form
+      // { path: 'tenants/:tenantId', component: TenantDetailComponent }, // Create this if you want a detail view    
     ]
   },
 

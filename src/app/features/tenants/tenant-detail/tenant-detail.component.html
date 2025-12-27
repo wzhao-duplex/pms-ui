@@ -1,0 +1,43 @@
+<div *ngIf="tenant; else loading" class="container mt-3">
+    <h2>Tenant Details</h2>
+
+    <div class="card p-4 shadow-sm">
+        <div class="row mb-2">
+            <div class="col-md-3 fw-bold">Full Name:</div>
+            <div class="col-md-9">{{ tenant.fullName }}</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 fw-bold">Email:</div>
+            <div class="col-md-9">{{ tenant.email }}</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 fw-bold">Phone:</div>
+            <div class="col-md-9">{{ tenant.phone }}</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 fw-bold">Lease Period:</div>
+            <div class="col-md-9">{{ tenant.leaseStart | date }} to {{ tenant.leaseEnd | date }}</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 fw-bold">Monthly Rent:</div>
+            <div class="col-md-9">{{ tenant.monthlyRent | currency }}</div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button mat-raised-button color="accent" [routerLink]="['/tenants', tenant.tenantId, 'edit']">
+            Edit
+        </button>
+        <button mat-button routerLink="/tenants" class="ms-2">
+            Back to List
+        </button>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p>Loading tenant details...</p>
+</ng-template>

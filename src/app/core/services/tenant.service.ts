@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { Tenant } from '../models/tenant.model';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
-  private apiUrl = 'http://localhost:8080/api/tenants';
-
-  constructor(private api: ApiService, private http: HttpClient) {}
+  private api = inject(ApiService);
 
   getAll(): Observable<Tenant[]> {
     return this.api.get<Tenant[]>('/tenants');
@@ -20,11 +17,15 @@ export class TenantService {
     return this.api.get<Tenant>(`/tenants/${id}`);
   }
 
-  createTenant(tenant: Tenant): Observable<Tenant> {
-    return this.api.post<Tenant>('/tenants', tenant);
+  createTenant(data: any): Observable<Tenant> {
+    return this.api.post<Tenant>('/tenants', data);
   }
 
-  getByProperty(propertyId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?propertyId=${propertyId}`);
+  updateTenant(id: string, data: any): Observable<Tenant> {
+    return this.api.put<Tenant>(`/tenants/${id}`, data);
+  }
+
+  deleteTenant(id: string): Observable<void> {
+    return this.api.delete<void>(`/tenants/${id}`);
   }
 }

@@ -1,28 +1,47 @@
-<h3>Tenants</h3>
-<button mat-raised-button color="primary" [routerLink]="['/tenants/new']">Add Tenant</button>
+<div class="header-container"
+  style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+  <h2>Tenants</h2>
+  <button mat-raised-button color="primary" routerLink="/tenants/new">Add Tenant</button>
+</div>
+
 <table mat-table [dataSource]="tenants" class="mat-elevation-z8">
-  <ng-container matColumnDef="full_name">
+
+  <!-- Full Name -->
+  <ng-container matColumnDef="fullName">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+    <!-- ✅ FIX: camelCase -->
+    <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
   </ng-container>
+
+  <!-- Email -->
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
+
+  <!-- Phone -->
   <ng-container matColumnDef="phone">
     <th mat-header-cell *matHeaderCellDef> Phone </th>
     <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
   </ng-container>
-  <ng-container matColumnDef="lease">
+
+  <!-- Lease Period -->
+  <ng-container matColumnDef="leasePeriod">
     <th mat-header-cell *matHeaderCellDef> Lease Period </th>
-    <td mat-cell *matCellDef="let element"> {{element.lease_start | date}} - {{element.lease_end | date}} </td>
+    <!-- ✅ FIX: camelCase -->
+    <td mat-cell *matCellDef="let element"> {{element.leaseStart | date}} - {{element.leaseEnd | date}} </td>
   </ng-container>
+
+  <!-- Actions -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button color="accent" [routerLink]="['/tenants', element.tenant_id]">View</button>
+      <button mat-button color="primary" [routerLink]="['/tenants', element.tenantId]">View</button>
+      <button mat-button color="accent" [routerLink]="['/tenants', element.tenantId, 'edit']">Edit</button>
+      <button mat-button color="warn" (click)="deleteTenant(element.tenantId)">Delete</button>
     </td>
   </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

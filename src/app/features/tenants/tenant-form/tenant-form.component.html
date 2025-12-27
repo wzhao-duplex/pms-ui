@@ -1,67 +1,68 @@
-<h2>Tenant</h2>
+<h2>{{ isEditMode ? 'Edit Tenant' : 'Add Tenant' }}</h2>
 
 <form [formGroup]="tenantForm" (ngSubmit)="onSubmit()">
 
-  <!-- Full Name -->
+  <!-- Property Selection (Critical) -->
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Full Name</mat-label>
-    <input matInput formControlName="full_name" />
-    <mat-error *ngIf="tenantForm.get('full_name')?.hasError('required')">
-      Full name is required
+    <mat-label>Select Property</mat-label>
+    <mat-select formControlName="propertyId">
+      <mat-option *ngFor="let p of properties" [value]="p.propertyId">
+        {{ p.address }}, {{ p.city }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="tenantForm.get('propertyId')?.hasError('required')">
+      Property is required
     </mat-error>
   </mat-form-field>
 
-  <!-- Phone -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Phone</mat-label>
-    <input matInput formControlName="phone" />
-  </mat-form-field>
+  <div class="row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName" />
+    </mat-form-field>
 
-  <!-- Email -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" formControlName="email" />
-    <mat-error *ngIf="tenantForm.get('email')?.hasError('email')">
-      Invalid email format
-    </mat-error>
-  </mat-form-field>
-
-  <!-- Lease Start -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Lease Start</mat-label>
-    <input matInput type="date" formControlName="lease_start" />
-  </mat-form-field>
-
-  <!-- Lease End -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Lease End</mat-label>
-    <input matInput type="date" formControlName="lease_end" />
-  </mat-form-field>
-
-  <!-- Monthly Rent -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Monthly Rent</mat-label>
-    <input matInput type="number" formControlName="monthly_rent" />
-  </mat-form-field>
-
-  <!-- Actions -->
-  <div class="actions">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="tenantForm.invalid"
-    >
-      Save
-    </button>
-
-    <button
-      mat-button
-      type="button"
-      routerLink="/tenants"
-    >
-      Cancel
-    </button>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
   </div>
 
+  <div class="row">
+    <!-- Phone Field -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+      <!-- Add Error Message -->
+      <mat-error *ngIf="tenantForm.get('phone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Monthly Rent</mat-label>
+      <input matInput type="number" formControlName="monthlyRent" />
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Lease Start</mat-label>
+      <input matInput type="date" formControlName="leaseStart" />
+      <mat-error *ngIf="tenantForm.get('leaseStart')?.hasError('required')">
+        Start date required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Lease End</mat-label>
+      <input matInput type="date" formControlName="leaseEnd" />
+    </mat-form-field>
+  </div>
+
+  <div class="actions mt-3">
+    <button mat-raised-button color="primary" type="submit" [disabled]="tenantForm.invalid">
+      {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+    <button mat-button type="button" routerLink="/tenants" class="ms-2">Cancel</button>
+  </div>
 </form>
