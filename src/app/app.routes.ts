@@ -11,6 +11,8 @@ import { TenantFormComponent } from './features/tenants/tenant-form/tenant-form.
 import { TenantDetailComponent } from './features/tenants/tenant-detail/tenant-detail.component';
 import { IncomeListComponent } from './features/income/income-list/income-list.component';
 import { IncomeFormComponent } from './features/income/income-form/income-form.component';
+import { ExpenseListComponent } from './features/expenses/expense-list/expense-list.component';
+import { ExpenseFormComponent } from './features/expenses/expense-form/expense-form.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +42,10 @@ export const routes: Routes = [
       { path: 'incomes', component: IncomeListComponent },
       { path: 'incomes/new', component: IncomeFormComponent },
       { path: 'incomes/:incomeId/edit', component: IncomeFormComponent },
+
+      { path: 'expenses', component: ExpenseListComponent },
+      { path: 'expenses/new', component: ExpenseFormComponent },
+      { path: 'expenses/:expenseId/edit', component: ExpenseFormComponent },
     ]
   },
 

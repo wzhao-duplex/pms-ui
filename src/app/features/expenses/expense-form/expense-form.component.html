@@ -1,0 +1,57 @@
+<div class="container mt-4" style="max-width: 600px;">
+    <h2>{{ isEditMode ? 'Edit Expense' : 'Add Expense' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-3">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Property</mat-label>
+            <mat-select formControlName="propertyId">
+                <mat-option *ngFor="let p of properties" [value]="p.propertyId">
+                    {{ p.address }}, {{ p.city }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('propertyId')?.invalid">Property is required</mat-error>
+        </mat-form-field>
+
+        <div class="d-flex gap-3">
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Expense Type</mat-label>
+                <mat-select formControlName="expenseType">
+                    <mat-option *ngFor="let type of expenseTypes" [value]="type">{{ type }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Amount ($)</mat-label>
+                <input matInput type="number" formControlName="amount">
+            </mat-form-field>
+        </div>
+
+        <div class="d-flex gap-3">
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="expenseDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Tax Year</mat-label>
+                <input matInput type="number" formControlName="taxYear">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes" rows="3"></textarea>
+        </mat-form-field>
+
+        <div class="d-flex justify-content-end gap-2">
+            <button mat-button type="button" routerLink="/expenses">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+                {{ isEditMode ? 'Update' : 'Save' }}
+            </button>
+        </div>
+
+    </form>
+</div>

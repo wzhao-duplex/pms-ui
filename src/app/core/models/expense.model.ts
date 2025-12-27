@@ -1,9 +1,9 @@
-export interface Expense {
-  expense_id?: string;
-  property_id: string;
-  expense_type: string;
+export interface PropertyExpense {
+  expenseId?: string;
+  propertyId: string;
+  expenseType: string;
   amount: number;
-  expense_date: string;
-  tax_year: number;
+  expenseDate: string; // YYYY-MM-DD
+  taxYear: number;
   notes?: string;
 }
