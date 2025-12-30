@@ -44,13 +44,25 @@ export class ExpenseFormComponent implements OnInit {
 
     expenseTypes = ['TAX', 'INSURANCE', 'MAINTENANCE', 'MANAGEMENT_FEE', 'UTILITIES', 'OTHER'];
 
+    taxCodes = [
+        { code: '8521', label: 'Advertising' },
+        { code: '8690', label: 'Insurance' },
+        { code: '8710', label: 'Interest' },
+        { code: '8860', label: 'Professional Fees' },
+        { code: '8960', label: 'Repairs & Maint.' },
+        { code: '9180', label: 'Property Taxes' },
+        { code: '9220', label: 'Utilities' },
+        { code: '9999', label: 'Other' }
+    ];
+
     form = this.fb.group({
         propertyId: ['', Validators.required],
         expenseType: ['', Validators.required],
         amount: [0, [Validators.required, Validators.min(0)]],
         expenseDate: ['', Validators.required],
         taxYear: [new Date().getFullYear(), [Validators.required]],
-        notes: ['']
+        notes: [''],
+        taxCode: ['', Validators.required]
     });
 
     ngOnInit() {

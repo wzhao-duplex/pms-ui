@@ -6,4 +6,5 @@ export interface PropertyExpense {
   expenseDate: string; // YYYY-MM-DD
   taxYear: number;
   notes?: string;
+  taxCode?: string;
 }

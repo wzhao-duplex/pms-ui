@@ -1,11 +1,21 @@
 .sidenav-container {
   height: 100vh;
-  /* Full viewport height */
 }
 
 .sidenav {
   width: 250px;
-  /* Width of the mobile drawer */
+}
+
+/* ✅ Fix Layout for Sticky Footer */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Pushes the footer down if content is short */
+.main-scrollable-content {
+  flex: 1;
 }
 
 .spacer {
@@ -17,7 +27,6 @@
   gap: 5px;
 }
 
-/* Ensure text doesn't overflow on very small screens */
 .text-small {
   font-size: 0.8rem;
   white-space: nowrap;

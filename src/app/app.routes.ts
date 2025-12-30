@@ -17,6 +17,7 @@ import { MortgageListComponent } from './features/mortgages/mortgage-list/mortga
 import { MortgageFormComponent } from './features/mortgages/mortgage-form/mortgage-form.component';
 import { MaintenanceListComponent } from './features/maintenance/maintenance-list/maintenance-list.component';
 import { MaintenanceFormComponent } from './features/maintenance/maintenance-form/maintenance-form.component';
+import { TaxReportComponent } from './features/reports/tax-report/tax-report.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -57,7 +58,10 @@ export const routes: Routes = [
 
       { path: 'maintenance', component: MaintenanceListComponent },
       { path: 'maintenance/new', component: MaintenanceFormComponent },
-      { path: 'maintenance/:id/edit', component: MaintenanceFormComponent },]
+      { path: 'maintenance/:id/edit', component: MaintenanceFormComponent },
+    
+      { path: 'reports/t776', component: TaxReportComponent },
+    ]
   },
 
   { path: '**', redirectTo: 'dashboard' } // Wildcard must be last

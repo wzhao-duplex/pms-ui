@@ -21,6 +21,15 @@
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field appearance="outline">
+                <mat-label>Tax Category (T776 Line)</mat-label>
+                <mat-select formControlName="taxCode">
+                    <mat-option *ngFor="let tc of taxCodes" [value]="tc.code">
+                        {{ tc.code }} - {{ tc.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field appearance="outline" class="flex-grow-1">
                 <mat-label>Amount ($)</mat-label>
                 <input matInput type="number" formControlName="amount">

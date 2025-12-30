@@ -1,11 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
 
-  <!-- SIDEBAR (DRAWER) - Only used on Mobile -->
+  <!-- SIDEBAR (Mobile) -->
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
 
     <mat-toolbar>Menu</mat-toolbar>
-
     <mat-nav-list *ngIf="authService.currentUser() as user">
       <a mat-list-item routerLink="/dashboard" (click)="closeDrawer()">Dashboard</a>
       <a mat-list-item routerLink="/properties" (click)="closeDrawer()">Properties</a>
@@ -14,32 +13,30 @@
       <a mat-list-item routerLink="/expenses" (click)="closeDrawer()">Expenses</a>
       <a mat-list-item routerLink="/mortgages" (click)="closeDrawer()">Mortgages</a>
       <a mat-list-item routerLink="/maintenance" (click)="closeDrawer()">Maintenance</a>
+      <!-- Add Reports Link -->
+      <a mat-list-item routerLink="/reports/t776" (click)="closeDrawer()">Tax Reports</a>
 
       <mat-divider></mat-divider>
-
       <a mat-list-item (click)="logout()">
         <mat-icon color="warn">logout</mat-icon> Logout
       </a>
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- MAIN CONTENT -->
-  <mat-sidenav-content>
+  <!-- MAIN CONTENT WRAPPER -->
+  <mat-sidenav-content class="content-wrapper">
 
     <!-- TOP TOOLBAR -->
     <mat-toolbar color="primary" *ngIf="authService.currentUser() as user">
-
-      <!-- Hamburger Button (Only on Mobile) -->
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon>menu</mat-icon>
       </button>
 
       <span>PMS</span>
-
       <span class="spacer"></span>
 
-      <!-- Desktop Buttons (Hidden on Mobile) -->
+      <!-- Desktop Menu -->
       <div *ngIf="!(isHandset$ | async)" class="desktop-menu">
         <button mat-button routerLink="/dashboard">Dashboard</button>
         <button mat-button routerLink="/properties">Properties</button>
@@ -48,20 +45,22 @@
         <button mat-button routerLink="/expenses">Expenses</button>
         <button mat-button routerLink="/mortgages">Mortgages</button>
         <button mat-button routerLink="/maintenance">Maint.</button>
+        <button mat-button routerLink="/reports/t776">Reports</button>
       </div>
 
-      <!-- User Info & Logout (Desktop) -->
       <div *ngIf="!(isHandset$ | async)" class="d-flex align-items-center">
         <span class="ms-3 me-2 text-small">{{ user.sub }}</span>
         <button mat-flat-button color="warn" (click)="logout()">Logout</button>
       </div>
-
     </mat-toolbar>
 
-    <!-- PAGE CONTENT -->
-    <div class="container mt-3">
+    <!-- ROUTER OUTLET (The Page Content) -->
+    <div class="container mt-3 main-scrollable-content">
       <router-outlet></router-outlet>
     </div>
+
+    <!-- ✅ FOOTER IS BACK -->
+    <app-footer></app-footer>
 
   </mat-sidenav-content>
 </mat-sidenav-container>
