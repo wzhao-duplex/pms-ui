@@ -1,7 +1,27 @@
+.sidenav-container {
+  height: 100vh;
+  /* Full viewport height */
+}
+
+.sidenav {
+  width: 250px;
+  /* Width of the mobile drawer */
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
-.container {
-  padding: 16px;
+.desktop-menu {
+  display: flex;
+  gap: 5px;
+}
+
+/* Ensure text doesn't overflow on very small screens */
+.text-small {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
