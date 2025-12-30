@@ -40,17 +40,12 @@
       <!-- ✅ ADDED -->
       <div class="col-md-9">{{ p.ownershipPercent }}%</div>
     </div>
-    <div class="row mb-2">
-      <div class="col-md-3 fw-bold">property_id:</div>
-      <!-- ✅ ADDED -->
-      <div class="col-md-9">{{ p.propertyId }}</div>
-    </div>
   </div>
 
   <div class="mt-4">
     <!-- Edit Button -->
     <button mat-raised-button color="accent" [routerLink]="['/properties', p.propertyId, 'edit']">
-      Edit {{ p.propertyId}}
+      Edit
     </button>
 
     <!-- Back Button -->
