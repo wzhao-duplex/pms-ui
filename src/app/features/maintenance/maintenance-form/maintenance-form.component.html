@@ -1,0 +1,74 @@
+<div class="container mt-4" style="max-width: 600px;">
+    <h2>{{ isEditMode ? 'Edit Record' : 'Add Maintenance Record' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-3">
+
+        <!-- Property Selection -->
+        <mat-form-field appearance="outline">
+            <mat-label>Property</mat-label>
+            <mat-select formControlName="propertyId">
+                <mat-option *ngFor="let p of properties" [value]="p.propertyId">
+                    {{ p.address }}, {{ p.city }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('propertyId')?.invalid">Property is required</mat-error>
+        </mat-form-field>
+
+        <div class="d-flex gap-3">
+            <!-- Category -->
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let c of categories" [value]="c">
+                        {{ c }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('category')?.invalid">Category is required</mat-error>
+            </mat-form-field>
+
+            <!-- Date -->
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Service Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="serviceDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <!-- Description -->
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+            <mat-error *ngIf="form.get('description')?.invalid">Description is required</mat-error>
+        </mat-form-field>
+
+        <!-- Cost -->
+        <mat-form-field appearance="outline">
+            <mat-label>Cost ($)</mat-label>
+            <input matInput type="number" formControlName="cost">
+        </mat-form-field>
+
+        <div class="d-flex gap-3">
+            <!-- Contractor Name -->
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Contractor Name</mat-label>
+                <input matInput formControlName="contractorName">
+            </mat-form-field>
+
+            <!-- Contractor Phone -->
+            <mat-form-field appearance="outline" class="flex-grow-1">
+                <mat-label>Contractor Phone</mat-label>
+                <input matInput formControlName="contractorPhone">
+            </mat-form-field>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-2">
+            <button mat-button type="button" routerLink="/maintenance">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+                {{ isEditMode ? 'Update' : 'Save' }}
+            </button>
+        </div>
+
+    </form>
+</div>

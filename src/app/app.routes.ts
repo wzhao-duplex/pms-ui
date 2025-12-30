@@ -13,6 +13,10 @@ import { IncomeListComponent } from './features/income/income-list/income-list.c
 import { IncomeFormComponent } from './features/income/income-form/income-form.component';
 import { ExpenseListComponent } from './features/expenses/expense-list/expense-list.component';
 import { ExpenseFormComponent } from './features/expenses/expense-form/expense-form.component';
+import { MortgageListComponent } from './features/mortgages/mortgage-list/mortgage-list.component';
+import { MortgageFormComponent } from './features/mortgages/mortgage-form/mortgage-form.component';
+import { MaintenanceListComponent } from './features/maintenance/maintenance-list/maintenance-list.component';
+import { MaintenanceFormComponent } from './features/maintenance/maintenance-form/maintenance-form.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -46,7 +50,14 @@ export const routes: Routes = [
       { path: 'expenses', component: ExpenseListComponent },
       { path: 'expenses/new', component: ExpenseFormComponent },
       { path: 'expenses/:expenseId/edit', component: ExpenseFormComponent },
-    ]
+
+      { path: 'mortgages', component: MortgageListComponent },
+      { path: 'mortgages/new', component: MortgageFormComponent },
+      { path: 'mortgages/:id/edit', component: MortgageFormComponent },
+
+      { path: 'maintenance', component: MaintenanceListComponent },
+      { path: 'maintenance/new', component: MaintenanceFormComponent },
+      { path: 'maintenance/:id/edit', component: MaintenanceFormComponent },]
   },
 
   { path: '**', redirectTo: 'dashboard' } // Wildcard must be last
