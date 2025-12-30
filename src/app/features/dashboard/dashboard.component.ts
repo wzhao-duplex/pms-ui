@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { PropertyService } from '../../core/services/property.service';
 import { TenantService } from '../../core/services/tenant.service';
 import { MaintenanceService } from '../../core/services/maintenance.service';
+import { Tenant } from 'src/app/core/models/tenant.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +35,8 @@ export class DashboardComponent implements OnInit {
   activeMaintenance = 0;
   occupancyRate = 0;
 
+  expiringTenants: Tenant[] = [];
+
   ngOnInit() {
     this.loadStats();
   }
@@ -55,6 +58,25 @@ export class DashboardComponent implements OnInit {
     this.maintenanceService.getAll().subscribe(records => {
       this.activeMaintenance = records.length;
     });
+
+    // Get Tenants & Check Expiry
+    this.tenantService.getAll().subscribe(tenants => {
+      this.totalTenants = tenants.length;
+      this.calculateOccupancy();
+      this.checkExpiries(tenants); // ✅ Check dates
+    });
+  }
+
+  checkExpiries(tenants: Tenant[]) {
+    const today = new Date();
+    const warningDate = new Date();
+    warningDate.setDate(today.getDate() + 90); // Alert if expiring in next 3 months
+
+    this.expiringTenants = tenants.filter(t => {
+      if (!t.leaseEnd) return false;
+      const endDate = new Date(t.leaseEnd);
+      return endDate >= today && endDate <= warningDate;
+    });
   }
 
   calculateOccupancy() {
@@ -62,5 +84,12 @@ export class DashboardComponent implements OnInit {
       // Simple logic: Occupancy = Tenants / Properties * 100
       this.occupancyRate = Math.round((this.totalTenants / this.totalProperties) * 100);
     }
+  }
+
+  getDaysLeft(dateStr: string): number {
+    const end = new Date(dateStr);
+    const today = new Date();
+    const diff = end.getTime() - today.getTime();
+    return Math.ceil(diff / (1000 * 3600 * 24));
   }
 }

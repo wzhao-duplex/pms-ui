@@ -70,6 +70,46 @@
         </div>
     </div>
 
+    <!-- Alerts Section -->
+    <div class="row mt-4" *ngIf="expiringTenants.length > 0">
+        <div class="col-12">
+            <mat-card class="border-warning">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar color="warn">notifications_active</mat-icon>
+                    <mat-card-title>Lease Expiry Alerts (Next 90 Days)</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="pt-3">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tenant</th>
+                                <th>Lease End</th>
+                                <th>Days Left</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let t of expiringTenants">
+                                <td>{{ t.fullName }}</td>
+                                <td class="text-danger fw-bold">{{ t.leaseEnd | date }}</td>
+                                <td>
+                                    {{ (getDaysLeft(t.leaseEnd)) }} days
+                                </td>
+                                <td>
+                                    <button mat-stroked-button color="primary" [routerLink]="['/tenants', t.tenantId]">
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
     <!-- Quick Actions Section -->
     <div class="row mt-4">
         <div class="col-md-6">
