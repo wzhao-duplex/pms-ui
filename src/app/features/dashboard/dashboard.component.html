@@ -1,2 +1,108 @@
-<h2>Dashboard</h2>
-<p>Overview of properties, tenants, income, and expenses will go here.</p>
+<div class="dashboard-container">
+    <h2 class="mb-4">Dashboard Overview</h2>
+
+    <!-- KPI Cards Row -->
+    <div class="row">
+
+        <!-- Properties Card -->
+        <div class="col-md-3 mb-4">
+            <mat-card class="kpi-card bg-primary text-white">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar class="kpi-icon">home</mat-icon>
+                    <mat-card-title>Properties</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="kpi-value">{{ totalProperties }}</div>
+                    <p>Total Managed Units</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button class="text-white" routerLink="/properties">View All</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <!-- Tenants Card -->
+        <div class="col-md-3 mb-4">
+            <mat-card class="kpi-card bg-success text-white">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar class="kpi-icon">people</mat-icon>
+                    <mat-card-title>Tenants</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="kpi-value">{{ totalTenants }}</div>
+                    <p>Active Leases</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button class="text-white" routerLink="/tenants">View All</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <!-- Maintenance Card -->
+        <div class="col-md-3 mb-4">
+            <mat-card class="kpi-card bg-warning text-dark">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar class="kpi-icon">build</mat-icon>
+                    <mat-card-title>Maintenance</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="kpi-value">{{ activeMaintenance }}</div>
+                    <p>Records Logged</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button class="text-dark" routerLink="/maintenance">View All</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <!-- Occupancy Card -->
+        <div class="col-md-3 mb-4">
+            <mat-card class="kpi-card bg-info text-white">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar class="kpi-icon">pie_chart</mat-icon>
+                    <mat-card-title>Occupancy</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="kpi-value">{{ occupancyRate }}%</div>
+                    <p>Occupancy Rate</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Quick Actions</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="d-flex gap-3 pt-3">
+                    <button mat-raised-button color="primary" routerLink="/properties/new">
+                        <mat-icon>add_home</mat-icon> Add Property
+                    </button>
+                    <button mat-raised-button color="accent" routerLink="/tenants/new">
+                        <mat-icon>person_add</mat-icon> Add Tenant
+                    </button>
+                    <button mat-raised-button color="warn" routerLink="/maintenance/new">
+                        <mat-icon>report_problem</mat-icon> Log Issue
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-md-6">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Financial Snapshot</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="pt-3">
+                    <p class="text-muted">Use the Income & Expenses tabs to track your detailed financial performance.
+                    </p>
+                    <button mat-button color="primary" routerLink="/incomes">Go to Income</button>
+                    <button mat-button color="warn" routerLink="/expenses">Go to Expenses</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
