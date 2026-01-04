@@ -70,4 +70,7 @@ export class AuthService {
             return null;
         }
     }
+    verifyEmail(email: string, code: string) {
+        return this.api.post('/auth/verify', { email, code });
+    }
 }

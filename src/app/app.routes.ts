@@ -18,10 +18,12 @@ import { MortgageFormComponent } from './features/mortgages/mortgage-form/mortga
 import { MaintenanceListComponent } from './features/maintenance/maintenance-list/maintenance-list.component';
 import { MaintenanceFormComponent } from './features/maintenance/maintenance-form/maintenance-form.component';
 import { TaxReportComponent } from './features/reports/tax-report/tax-report.component';
+import { VerifyEmailComponent } from './features/auth/verify-email/verify-email.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'verify', component: VerifyEmailComponent },
 
   {
     path: '',

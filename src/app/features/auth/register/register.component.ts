@@ -6,10 +6,10 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterRequest } from '../../../core/models/auth.model';
 
 @Component({
-    selector: 'app-register',
-    standalone: true,
-    imports: [CommonModule, FormsModule, RouterModule],
-    template: `
+  selector: 'app-register',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
+  template: `
     <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
       <div class="card shadow p-4" style="width: 500px;">
         <div class="card-body">
@@ -57,26 +57,26 @@ import { RegisterRequest } from '../../../core/models/auth.model';
   `
 })
 export class RegisterComponent {
-    authService = inject(AuthService);
-    router = inject(Router);
+  authService = inject(AuthService);
+  router = inject(Router);
 
-    model: RegisterRequest = {};
-    isLoading = false;
-    errorMessage = '';
+  model: RegisterRequest = {};
+  isLoading = false;
+  errorMessage = '';
 
-    onSubmit() {
-        this.isLoading = true;
-        this.errorMessage = '';
+  onSubmit() {
+    this.isLoading = true;
+    this.errorMessage = '';
 
-        this.authService.register(this.model).subscribe({
-            next: (res) => {
-                this.authService.saveToken(res.token);
-                this.router.navigate(['/properties']);
-            },
-            error: (err) => {
-                this.isLoading = false;
-                this.errorMessage = err.error?.message || 'Registration failed. Email might be in use.';
-            }
-        });
-    }
+    this.authService.register(this.model).subscribe({
+      next: (res) => {
+        // ✅ Redirect to Verify Page, passing email as parameter
+        this.router.navigate(['/verify'], { queryParams: { email: this.model.email } });
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = err.error?.message || 'Registration failed. Email might be in use.';
+      }
+    });
+  }
 }
