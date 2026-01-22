@@ -1,27 +1,36 @@
-# PmsUi
+# Property Management System (PMS) - Frontend UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+A modern, responsive Single Page Application (SPA) built with **Angular 17** using **Standalone Components**. It provides a user-friendly interface for landlords and agents to manage their real estate portfolio.
 
-## Development server
+## 🚀 Tech Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+*   **Framework:** Angular 17 (Standalone, No NgModules)
+*   **Styling:** Angular Material, Bootstrap 5 (Grid/Utilities), CSS
+*   **Http Client:** Angular HttpClient with Interceptors (Auth/JWT)
+*   **Deployment:** AWS S3 (Static Website Hosting)
 
-## Code scaffolding
+## ✨ Key Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+*   **Responsive Design:** Sidenav layout with mobile "Hamburger" menu support.
+*   **Dashboard:** Real-time KPI cards (Occupancy, Active Issues) and Lease Expiry Alerts.
+*   **Property & Tenant Management:** Full CRUD with detailed views.
+*   **Document Handling:** Upload and download lease documents securely.
+*   **Financials:** Income and Expense logging with Date pickers.
+*   **Reporting:** Generate T776 Tax Summary tables.
+*   **Security:** Route Guards, Auto-Logout, JWT handling.
 
-## Build
+## 🛠️ Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+*   Node.js (v18 or v20 recommended)
+*   Angular CLI (`npm install -g @angular/cli`)
 
-## Running unit tests
+## ⚙️ Configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The API URL is configured in the environment files.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**1. Local Development (`src/environments/environment.ts`)**
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
